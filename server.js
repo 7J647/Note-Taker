@@ -14,12 +14,8 @@ app.use(express.json());
 app.use(express.static('public'));
 
 
-
-
-
-
   app.get("/api/notes", function(req, res) {
-      //not using this because now it's not coming in as a string 
+      //not using fs.readFile because now it's not coming in as a string 
     // fs.readFile("./db/db.json", "utf-8", (err, data) => {
     res.json(notes);   
     // })  
@@ -27,25 +23,44 @@ app.use(express.static('public'));
 
   app.post("/api/notes", function(req, res) {
     const newNote = req.body;
+    // const index = 0;
 
-    newNote.id ="";
+    // adding an id property to the object
+    // newNote.id ="";
 
     //npm package for random number or take notes array select last note object
     //grab that note's id and increment it by 1
   
-    console.log(newNote);
+    // console.log(newNote);
   
     notes.push(newNote);
 
+    //this gives each object in the array an id number
+    notes.forEach((note, index) => {
+        note.id = index + 1;
+    });
+
   
-    //not using err because we are using writeFileSync.   Taking array out of the file
-    //adding a new thing into the array, putting the array back into the file.
+    //not using err because we are using writeFileSync.
     fs.writeFileSync("./db/db.json", JSON.stringify(notes))
   
     res.json(newNote);
   });
 
-  app.delete("/api/notes/:note"
+//   app.delete("/api/notes/:note"
+
+// app.delete("/api/notes/"+ id, function(req, res) {
+//     // Grab the selected parameter
+//     // var chosen = req.params.note;
+//     // console.log(chosen);
+  
+//     // Filter to show only the selected character
+//     for (var i = 0; i < notes.length; i++) {
+//       if (chosen === characters[i].id) {
+//         return res.json(characters[i]);
+//       }
+//     }
+//   });
 
 
   
@@ -62,4 +77,6 @@ app.use(express.static('public'));
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
+  
+
   
