@@ -1,0 +1,20 @@
+{
+  "name": "Note-Taker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/7J647/Note-Taker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/7J647/Note-Taker/issues"
+  },
+  "homepage": "https://github.com/7J647/Note-Taker#readme"
+}
