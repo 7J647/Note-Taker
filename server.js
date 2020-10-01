@@ -1,5 +1,6 @@
 const express = require("express");
 var path = require("path");
+var fs = require("fs");
 
 const app = express();
 
@@ -11,18 +12,24 @@ app.use(express.json());
 app.use(express.static('public'));
 
 
-app.get("/notes", function(req, res) {
+
+
+
+
+  app.get("/api/notes", function(req, res) {
+    fs.readFile("./db/db.json", "utf-8", (err, data) => {
+    res.json(data);   
+    })
+    
+  });
+  
+  app.get("/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "./public/notes.html"));
   });
 
-app.get("*", function(req, res) {
+  app.get("*", function(req, res) {
     res.sendFile(path.join(__dirname, "./public/index.html"));
   });
-
-
-
-  
-
 
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
