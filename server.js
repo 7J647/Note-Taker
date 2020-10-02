@@ -36,59 +36,27 @@ app.use(express.static('public'));
   });
 
   
-  app.delete("/api/notes/:id", function(req, res) {
-    //reading all of the notes from the db.json file
-    fs.readFile("./db/db.json", "utf-8", (err, data) => {
-        if (err) throw err;
+  // app.delete("/api/notes/:id", function(req, res) {
+  //   //reading all of the notes from the db.json file
+  //   fs.readFile("./db/db.json", "utf-8", (err, data) => {
+  //       if (err) throw err;
+   
+  //   //I just wasn't able to understand this.  What I am thinking
+  //   //is that we need to fs.readFile again.  Somehow use req.params
+  //   //to isolate the id.  Use .filter on notes to remove the note with
+  //   //the selected id.  Rewrite the updated array of notes to the 
+  //   //database. 
+    
+  //   //I had many hours put in with a ton of different
+  //   //ideas but at this stage I don't think any amount of time is
+  //   //going to help me get this on my own, alas.
 
+  //   fs.writeFileSync("./db/db.json", JSON.stringify(notesArray)), 
   
-    //variable to store the data read, convert back from a string    
-    const notesArray = JSON.parse(data);
-    // notesArray.push(req.body);
-
-    // notesArray = notesArray.filter(x => {
-    //     return x.Id != id;
-    //   })
+  //   res.json(notesArray);
   
-    // // notesArray.splice(0, 1, id);
-
-//     var removeId = notesArray.map(note => note.id)
-//                        .indexOf(note.id);
-
-// ~removeId && notesArray.splice(removeId, id);
-  
-    fs.writeFileSync("./db/db.json", JSON.stringify(notesArray)), 
-  
-    res.json(notesArray);
-  
-    });
-  });
-
-//   POSSIBILITIES
-
-
-
-
-
-
-
-//   var chosenNote = req.params.id;
-//   console.log(chosenNote);
-
-// // Filter to show only the selected character
-// for (var i = 0; i < notesArray.length; i++) {
-//   if (chosenNote === notesArray[i].id) {
-//     return res.json(notesArray[i]);
-//   });
-// });
-// }
-// });
-
-
-// In order to delete a note, you'll need to read all notes from the `db.json` file, 
-// remove the note with the given `id` property, and then rewrite the notes to the `db.json` file.
-
-  
+  //   });
+  // });
 
   
   app.get("/notes", function(req, res) {
