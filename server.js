@@ -21,64 +21,68 @@ app.use(express.static('public'));
     // })  
   });
 
-//   app.get("/api/notes/:note", function(req, res) {
-//     var chosen = req.params.note;
-//     for (var i = 0; i < notes.length; i++) {
-//       if (chosen === notes[i].id) {
-//         return res.json(notes[i]);
-//       }
-//     }
-  
-//     return res.send("No character found");
-  
-//   });
-
   app.post("/api/notes", function(req, res) {
     const newNote = req.body;
-    // const index = 0;
-
-    // adding an id property to the object
-    // newNote.id ="";
-
-    //npm package for random number or take notes array select last note object
-    //grab that note's id and increment it by 1
-  
-    // console.log(newNote);
-  
     notes.push(newNote);
 
     //this gives each object in the array an id number
     notes.forEach((note, index) => {
         note.id = index + 1;
     });
-
   
     //not using err because we are using writeFileSync.
     fs.writeFileSync("./db/db.json", JSON.stringify(notes))
-  
     res.json(newNote);
   });
 
-app.delete("/api/notes/:id", function(req, res) {
+  
+  app.delete("/api/notes/:id", function(req, res) {
     //reading all of the notes from the db.json file
     fs.readFile("./db/db.json", "utf-8", (err, data) => {
         if (err) throw err;
-    
 
+  
     //variable to store the data read, convert back from a string    
     const notesArray = JSON.parse(data);
-    notesArray.push(req.body);
+    // notesArray.push(req.body);
 
-    });
-//     // remove the note with the given id property
-//     //req.params
+    // notesArray = notesArray.filter(x => {
+    //     return x.Id != id;
+    //   })
+  
+    // // notesArray.splice(0, 1, id);
 
-    //rewriting the notes to the db.json file
+//     var removeId = notesArray.map(note => note.id)
+//                        .indexOf(note.id);
+
+// ~removeId && notesArray.splice(removeId, id);
+  
     fs.writeFileSync("./db/db.json", JSON.stringify(notesArray)), 
-
+  
     res.json(notesArray);
+  
+    });
+  });
 
-});
+//   POSSIBILITIES
+
+
+
+
+
+
+
+//   var chosenNote = req.params.id;
+//   console.log(chosenNote);
+
+// // Filter to show only the selected character
+// for (var i = 0; i < notesArray.length; i++) {
+//   if (chosenNote === notesArray[i].id) {
+//     return res.json(notesArray[i]);
+//   });
+// });
+// }
+// });
 
 
 // In order to delete a note, you'll need to read all notes from the `db.json` file, 
