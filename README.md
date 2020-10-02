@@ -40,7 +40,7 @@ The URL for this project's GitHub repository is: https://github.com/7J647/Note-T
 ## Contributing
 
 
-With thanks to instructor Jonathan Watson and his team of TAs and to Josh Furlin for 
+With thanks to instructor Jonathan Watson and his team of TAs (especially Phil!) and to Josh Furlin for 
 providing tutoring on this project.  And to "Stanman" for subbing and getting us all
 set up on Heroku.
 
