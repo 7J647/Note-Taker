@@ -21,6 +21,18 @@ app.use(express.static('public'));
     // })  
   });
 
+//   app.get("/api/notes/:note", function(req, res) {
+//     var chosen = req.params.note;
+//     for (var i = 0; i < notes.length; i++) {
+//       if (chosen === notes[i].id) {
+//         return res.json(notes[i]);
+//       }
+//     }
+  
+//     return res.send("No character found");
+  
+//   });
+
   app.post("/api/notes", function(req, res) {
     const newNote = req.body;
     // const index = 0;
@@ -49,18 +61,9 @@ app.use(express.static('public'));
 
 //   app.delete("/api/notes/:note"
 
-// app.delete("/api/notes/"+ id, function(req, res) {
-//     // Grab the selected parameter
-//     // var chosen = req.params.note;
-//     // console.log(chosen);
-  
-//     // Filter to show only the selected character
-//     for (var i = 0; i < notes.length; i++) {
-//       if (chosen === characters[i].id) {
-//         return res.json(characters[i]);
-//       }
-//     }
-//   });
+app.delete("/api/notes/:id", function(req, res) {
+    res.sendFile(path.join(__dirname, "./public/notes.html"));
+});
 
 
   
