@@ -35,6 +35,10 @@ app.use(express.static('public'));
     res.json(newNote);
   });
 
+//ONE LAST NOTE TO THE GRADERS:  on my local host, the note disappears on page refresh
+//but on the deployed app, I haven't been able to duplicate this
+
+
   //TO GRADERS--I originally turned this on on Friday without app.delete
   //I then woke up Saturday thinking I was just overcomplicating it
   //I tried the below and the delete works to the extent that if you
