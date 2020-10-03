@@ -35,6 +35,26 @@ app.use(express.static('public'));
     res.json(newNote);
   });
 
+  //TO GRADERS--I originally turned this on on Friday without app.delete
+  //I then woke up Saturday thinking I was just overcomplicating it
+  //I tried the below and the delete works to the extent that if you
+  //refresh the page, the note is no longer there.  But I still was not
+  //able to get the delete to happen immediately on clicking the delete button.
+    app.delete("/api/notes/:id", function(req, res) {
+      //creating an updated array with one less note, using .filter to weed out the id to be deleted
+      //doing a parseInt on the req.params.id to convert from string to number
+      updatedNotes = notes.filter((note)=>note.id !==parseInt(req.params.id));
+      //this was pretty much just an idea I thought I would try, writing the updated array back to the db
+      fs.writeFileSync("./db/db.json", JSON.stringify(updatedNotes))
+    res.json(updatedNotes);
+    //below, I was trying to say that notes = updatedNotes and that this might get the delete to appear immediately
+    //this didn't work though.
+    // notes = updatedNotes;
+    // res.json(updatedNotes);
+    
+  });
+
+  //TO GRADERS--this is what I originally turned in on Friday:
   
   // app.delete("/api/notes/:id", function(req, res) {
   //   //reading all of the notes from the db.json file
