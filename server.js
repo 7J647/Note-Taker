@@ -4,7 +4,7 @@ var fs = require("fs");
 
 const app = express();
 
-const notes =  require("./db/db.json");
+let notes =  require("./db/db.json");
 
 const PORT = process.env.PORT || 8080;
 
@@ -50,7 +50,8 @@ app.use(express.static('public'));
       updatedNotes = notes.filter((note)=>note.id !==parseInt(req.params.id));
       //this was pretty much just an idea I thought I would try, writing the updated array back to the db
       fs.writeFileSync("./db/db.json", JSON.stringify(updatedNotes))
-    res.json(updatedNotes);
+      notes = updatedNotes
+    res.json(notes);
     //below, I was trying to say that notes = updatedNotes and that this might get the delete to appear immediately
     //this didn't work though.
     // notes = updatedNotes;
